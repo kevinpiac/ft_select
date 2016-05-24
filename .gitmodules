@@ -1,0 +1,3 @@
+[submodule "dst/libft"]
+	path = dst/libft
+	url = http://github.com/kevinpiac/libft

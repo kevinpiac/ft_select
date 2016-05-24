@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/13 16:33:27 by kpiacent          #+#    #+#             */
-/*   Updated: 2016/05/24 09:39:48 by kpiacent         ###   ########.fr       */
+/*   Created: 2016/05/24 13:20:43 by kpiacent          #+#    #+#             */
+/*   Updated: 2016/05/24 13:21:19 by kpiacent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include "ft_select.h"
 
-# include "../libft/includes/libft.h"
-
-#endif
+int			main(void)
+{
+	ft_putendl("Ready.");
+	return (0);
+}
