@@ -15,12 +15,18 @@
 int			main(void)
 {
 	struct termios	*termios;
+	int				ret;
+	char			buff[5];
 
 	if (term_init_data() == -1)
 		return (1);
 	termios = (struct termios *)ft_memalloc(sizeof(struct termios));
 	if (term_init_config(termios) == -1)
 		return (1);
+	while ((ret = read(0, buff, 4)))
+	{
+
+	}
 	ft_putstr("Ready");
 	return (0);
 }
