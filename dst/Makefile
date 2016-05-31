@@ -25,7 +25,7 @@ all : $(NAME)
 
 $(NAME) :
 		@cd $(L_DIR) && $(MAKE)
-		@CC -o $(NAME) $(FLAGS) $(FILES_PATH) -I $(H_DIR) -L $(L_DIR) -lft
+		@CC -o $(NAME) $(FLAGS) $(FILES_PATH) -I $(H_DIR) -L $(L_DIR) -lft -lncurses
 		@echo "Complilation: \t\t\tDONE!"
 
 clean :
