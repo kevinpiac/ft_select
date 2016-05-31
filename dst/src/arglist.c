@@ -15,12 +15,17 @@
 static void			arglist_init__(t_arglist *this, int ac, char **av)
 {
 	int			i;
+	size_t		biggest;
+	t_arg		*arg;
 
 	i = 1;
+	biggest = 0;
 	this->args = vector_new(ac);
 	while (i < ac)
 	{
-		vector_add(this->args, arg_new(av[i]));
+		arg = arg_new(av[i]);
+		vector_add(this->args, arg);
+		biggest = arg->len > biggest ? arg->len : biggest;
 		i++;
 	}
 }

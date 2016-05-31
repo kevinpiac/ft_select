@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-CC = gcc
+CC = gcc -g
 FLAGS = -Wall -Wextra -Werror
 NAME = ft_select
 L_DIR = libft/
