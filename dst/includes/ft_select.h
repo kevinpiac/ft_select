@@ -18,6 +18,24 @@
 # include <curses.h>
 # include <term.h>
 
+/*
+** ARG.C
+*/
+
+typedef struct 		s_arg
+{
+	char			*name;
+	size_t			len;
+	int				mode; //create macro for underlined, selected, passive
+}					t_arg;
+
+t_arg				*arg_new(char *name);
+void				arg_del(t_arg *this);
+
+/*
+** TERM.C
+*/
+
 int					term_init_data(void);
 int					term_init_config(struct termios *termios);
 
