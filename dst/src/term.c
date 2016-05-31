@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   term.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,35 @@
 
 #include "ft_select.h"
 
-int			main(void)
+int			term_init_data(void)
 {
-	struct termios	*termios;
+	char			*termtype;
+	int				success;
+	int				error;
 
-	if (term_init_data() == -1)
-		return (1);
-	termios = (struct termios *)ft_memalloc(sizeof(struct termios));
-	if (term_init_config(termios) == -1)
-		return (1);
-	ft_putstr("Ready");
-	return (0);
+	error = 0;
+	if ((termtype = getenv("TERM")))
+	{
+		success = tgetent(NULL, (const char *)termtype);
+		if (success > 0)
+			return (1);
+		if (success < 0)
+			error_print(-1, NULL, "Terminfo database could not be found");
+		else if (success == 0)
+			error_print(-1, NULL, "No entry found");
+
+	}
+	else
+		error_print(-1, NULL, "No terminal info passed in env.");
+	return (-1);
+}
+
+int			term_init_config(struct termios *termios)
+{
+	if (tcgetattr(0, termios) == -1)
+	{
+		error_print(-1, NULL, "Struct termios can not be initialized.");
+		return (-1);
+	}
+	return (1);
 }

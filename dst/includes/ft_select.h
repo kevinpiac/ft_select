@@ -14,5 +14,11 @@
 # define FT_SELECT_H
 
 # include "../libft/includes/libft.h"
+# include <termios.h>
+# include <curses.h>
+# include <term.h>
+
+int					term_init_data(void);
+int					term_init_config(struct termios *termios);
 
 #endif
