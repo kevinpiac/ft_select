@@ -30,7 +30,21 @@ typedef struct 		s_arg
 }					t_arg;
 
 t_arg				*arg_new(char *name);
-void				arg_del(t_arg *this);
+void				arg_del(void *this);
+
+/*
+** ARGLIST.C
+*/
+
+typedef struct		s_arglist
+{
+	t_vector		*args;
+	size_t			biggest;
+	// add every usefull function pointer bellow...
+}					t_arglist;
+
+t_arglist			*arglist_new(int ac, char **av);
+void				arglist_del(t_arglist *this);
 
 /*
 ** TERM.C

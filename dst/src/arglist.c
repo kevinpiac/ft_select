@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg.c                                              :+:      :+:    :+:   */
+/*   arglist.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,28 +12,32 @@
 
 #include "ft_select.h"
 
-static void			arg_init__(char *name, t_arg *this)
+static void			arglist_init__(t_arglist *this, int ac, char **av)
 {
-	this->name = ft_strdup(name);
-	this->len = ft_strlen(name);
-	this->mode = 0;
+	int			i;
+
+	i = 1;
+	this->args = vector_new(ac);
+	while (i < ac)
+	{
+		vector_add(this->args, arg_new(av[i]));
+		i++;
+	}
 }
 
-t_arg				*arg_new(char *name)
+t_arglist			*arglist_new(int ac, char **av)
 {
-	t_arg			*arg;
+	t_arglist	*arglist;
 
-	if (!(arg = (t_arg *)ft_memalloc(sizeof(t_arg))))
+	if (!(arglist = (t_arglist *)ft_memalloc(sizeof(t_arglist))))
 		return (NULL);
-	arg_init__(name, arg);
-	return (arg);
+	arglist_init__(arglist, ac, av);
+	return (arglist);
 }
 
-void				arg_del(void *that)
+void				arglist_del(t_arglist *this)
 {
-	t_arg			*this;
-
-	this = (t_arg *)that;
-	free(this->name);
+	if (this->args)
+		vector_del(this->args, &arg_del);
 	free(this);
 }

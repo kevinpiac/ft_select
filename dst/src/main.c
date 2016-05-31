@@ -12,21 +12,20 @@
 
 #include "ft_select.h"
 
-int			main(void)
+int			main(int ac, char **av)
 {
 	struct termios	*termios;
-	int				ret;
-	char			buff[5];
+	t_arglist		*arglist;
 
+	if (ac < 2)
+		return (1);
 	if (term_init_data() == -1)
 		return (1);
 	termios = (struct termios *)ft_memalloc(sizeof(struct termios));
 	if (term_init_config(termios) == -1)
 		return (1);
-	while ((ret = read(0, buff, 4)))
-	{
-
-	}
-	ft_putstr("Ready");
+	arglist = arglist_new(ac, av);
+	arglist_del(arglist);
+	free(termios);
 	return (0);
 }
