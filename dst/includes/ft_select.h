@@ -31,6 +31,7 @@ typedef struct 		s_arg
 
 t_arg				*arg_new(char *name);
 void				arg_del(void *this);
+void				arg_print(void *this);
 
 /*
 ** ARGLIST.C
@@ -45,6 +46,7 @@ typedef struct		s_arglist
 
 t_arglist			*arglist_new(int ac, char **av);
 void				arglist_del(t_arglist *this);
+void				arglist_render(t_arglist *this);
 
 /*
 ** TERM.C

@@ -46,3 +46,8 @@ void				arglist_del(t_arglist *this)
 		vector_del(this->args, &arg_del);
 	free(this);
 }
+
+void				arglist_render(t_arglist *this)
+{
+	vector_foreach(this->args, &arg_print);
+}

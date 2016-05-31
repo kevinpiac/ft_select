@@ -37,3 +37,19 @@ void				arg_del(void *that)
 	free(this->name);
 	free(this);
 }
+
+/*
+** arg_print should be modified
+*/
+void				arg_print(void *that)
+{
+	t_arg		*this;
+
+	this = (t_arg *)that;
+	ft_putstr(this->name);
+	ft_putstr(" - ");
+	ft_putnbr(this->len);
+	ft_putstr(" - ");
+	ft_putnbr(this->mode);
+	ft_putendl("");
+}

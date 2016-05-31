@@ -25,6 +25,7 @@ int			main(int ac, char **av)
 	if (term_init_config(termios) == -1)
 		return (1);
 	arglist = arglist_new(ac, av);
+	arglist_render(arglist);
 	arglist_del(arglist);
 	free(termios);
 	return (0);
