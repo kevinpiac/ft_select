@@ -1,7 +1,7 @@
 /* ************************************************************************** */
-/*                                        qqwq                                    */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,10 @@
 
 #include "ft_select.h"
 
-int			main(int ac, char **av)
+void			use_termcap(char *termcap)
 {
-	struct termios	*termios;
-	t_arglist		*arglist;
+	char			*res;
 
-	if (ac < 2)
-		return (1);
-	if (term_init_data() == -1)
-		return (1);
-	termios = (struct termios *)ft_memalloc(sizeof(struct termios));
-	if (term_init_config(termios) == -1)
-		return (1);
-	arglist = arglist_new(ac, av);
-	arglist_render(arglist);
-	arglist_del(arglist);
-	free(termios);
-	return (0);
+	if ((res = tgetstr(termcap, NULL)))
+		tputs(res, 0, &term_out);
 }

@@ -22,14 +22,18 @@
 ** ARG.C
 */
 
+# define ARG_MODE_SELECTED 1
+# define ARG_MODE_POINTED 2
+# define ARG_MODE_NORMAL 0
+
 typedef struct 		s_arg
 {
 	char			*name;
 	size_t			len;
-	int				mode; //create macro for underlined, selected, passive
+	int				mode;
 }					t_arg;
 
-t_arg				*arg_new(char *name);
+t_arg				*arg_new(char *name, int mode);
 void				arg_del(void *this);
 void				arg_print(void *this);
 
@@ -54,5 +58,12 @@ void				arglist_render(t_arglist *this);
 
 int					term_init_data(void);
 int					term_init_config(struct termios *termios);
+int					term_out(int c);
+
+/*
+** CMD.C
+*/
+
+void				use_termcap(char *termcap);
 
 #endif

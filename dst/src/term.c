@@ -58,3 +58,9 @@ int			term_init_config(struct termios *termios)
 	tcsetattr(0, 0, termios);
 	return (1);
 }
+
+int			term_out(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}

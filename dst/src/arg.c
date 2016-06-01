@@ -12,20 +12,20 @@
 
 #include "ft_select.h"
 
-static void			arg_init__(char *name, t_arg *this)
+static void			arg_init__(t_arg *this, char *name, int mode)
 {
 	this->name = ft_strdup(name);
 	this->len = ft_strlen(name);
-	this->mode = 0;
+	this->mode = mode;
 }
 
-t_arg				*arg_new(char *name)
+t_arg				*arg_new(char *name, int mode)
 {
 	t_arg			*arg;
 
 	if (!(arg = (t_arg *)ft_memalloc(sizeof(t_arg))))
 		return (NULL);
-	arg_init__(name, arg);
+	arg_init__(arg, name, mode);
 	return (arg);
 }
 
@@ -46,10 +46,13 @@ void				arg_print(void *that)
 	t_arg		*this;
 
 	this = (t_arg *)that;
-	ft_putstr(this->name);
-	ft_putstr(" - ");
-	ft_putnbr(this->len);
-	ft_putstr(" - ");
-	ft_putnbr(this->mode);
-	ft_putendl("");
+	if (this->mode &= ARG_MODE_POINTED)
+	{
+		use_termcap("us");
+		ft_putstr(this->name);
+		use_termcap("ue");
+	}
+	else
+		ft_putstr(this->name);
+	ft_putstr("		");
 }
