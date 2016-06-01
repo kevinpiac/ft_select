@@ -46,13 +46,11 @@ void				arg_print(void *that)
 	t_arg		*this;
 
 	this = (t_arg *)that;
-	if (this->mode &= ARG_MODE_POINTED)
-	{
+	if (ARG_IS_POINTED(this->mode))
 		use_termcap("us");
-		ft_putstr(this->name);
-		use_termcap("ue");
-	}
-	else
-		ft_putstr(this->name);
-	ft_putstr("		");
+	if (ARG_IS_SELECTED(this->mode))
+		use_termcap("mr");
+	ft_putstr(this->name);
+	use_termcap("me");
+//	use_termcap("ue"); not needed if term supports mr...mb
 }

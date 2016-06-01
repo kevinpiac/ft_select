@@ -28,7 +28,6 @@ int			term_init_data(void)
 			error_print(-1, NULL, "Terminfo database could not be found");
 		else if (success == 0)
 			error_print(-1, NULL, "No entry found");
-
 	}
 	else
 		error_print(-1, NULL, "No terminal info passed in env.");
@@ -42,19 +41,10 @@ int			term_init_config(struct termios *termios)
 		error_print(-1, NULL, "Struct termios can not be initialized.");
 		return (-1);
 	}
-/*
-	ft_bitprint(ICANON);
-	ft_bitprint(ECHO);
-	ft_bitprint(termios->c_lflag);
-*/
-	termios->c_lflag &= ~(ICANON);
-	//termios->c_lflag &= ~(ICANON | ECHO);
+	//termios->c_lflag &= ~(ICANON);
+	termios->c_lflag &= ~(ICANON | ECHO);
 	termios->c_cc[VMIN] = 1;
 	termios->c_cc[VTIME] = 1;
-/*
-	ft_bitprint(termios->c_lflag);
-*/
-
 	tcsetattr(0, 0, termios);
 	return (1);
 }

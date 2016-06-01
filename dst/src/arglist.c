@@ -51,5 +51,18 @@ void				arglist_del(t_arglist *this)
 
 void				arglist_render(t_arglist *this)
 {
-	vector_foreach(this->args, &arg_print);
+	int			i;
+	t_vector	*args;
+
+	i = 0;
+	args = this->args;
+	while (i < args->total)
+	{
+		arg_print(args->items[i]);
+		if (i < args->total - 1)
+			ft_putstr("		");
+		else
+			ft_putchar('\n');
+		i++;
+	}
 }

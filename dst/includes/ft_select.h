@@ -17,6 +17,8 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
+# include <sys/ioctl.h>
+# include <signal.h>
 
 /*
 ** ARG.C
@@ -25,6 +27,8 @@
 # define ARG_MODE_SELECTED 1
 # define ARG_MODE_POINTED 2
 # define ARG_MODE_NORMAL 0
+# define ARG_IS_SELECTED(mode) (mode &= ARG_MODE_SELECTED)
+# define ARG_IS_POINTED(mode) (mode &= ARG_MODE_POINTED)
 
 typedef struct 		s_arg
 {
