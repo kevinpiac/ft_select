@@ -24,9 +24,9 @@ void			move_right(t_arglist *list)
 	total = args->total;
 	i = arglist_get_current_index(list);
 	arg = args->items[i];
-	arg->mode = ARG_MODE_NORMAL;
+	arg->mode &= ARG_MODE_SELECTED;
 	arg = (i + 1 < total) ? args->items[i + 1] : args->items[0];
-	arg->mode = ARG_MODE_POINTED;
+	arg->mode |= ARG_MODE_POINTED;
 	arglist_render(list);
 }
 
@@ -42,9 +42,9 @@ void			move_left(t_arglist *list)
 	total = args->total;
 	i = arglist_get_current_index(list);
 	arg = args->items[i];
-	arg->mode = ARG_MODE_NORMAL;
+	arg->mode &= ARG_MODE_SELECTED;
 	arg = (i - 1 >= 0) ? args->items[i - 1] : args->items[total - 1];
-	arg->mode = ARG_MODE_POINTED;
+	arg->mode |= ARG_MODE_POINTED;
 	arglist_render(list);
 }
 

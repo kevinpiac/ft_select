@@ -30,6 +30,6 @@ void			listener_keystroke(t_arglist *list)
 			IS_KEY_LEFT(buf[2]) ? move_left(list) : 0;
 		}
 		else if (IS_SPACE(buf[0]))
-			ft_putendl("space");
+			arg_select(list);
 	}
 }

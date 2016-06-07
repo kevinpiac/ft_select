@@ -54,3 +54,15 @@ void				arg_print(void *that)
 	cmd_put("me");
 //	cmd_put("ue"); not needed if term supports mr...mb
 }
+
+void				arg_select(t_arglist *list)
+{
+	int			i;
+	t_arg		*arg;
+
+	cmd_put("cl");
+	i = arglist_get_current_index(list);
+	arg = list->args->items[i];
+	arg->mode ^= ARG_MODE_SELECTED;
+	arglist_render(list);
+}

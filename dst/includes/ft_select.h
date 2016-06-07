@@ -35,12 +35,12 @@
 /*
 ** ARG.C
 */
-
+// revoir ici pour plus de coherence.
 # define ARG_MODE_SELECTED 1
 # define ARG_MODE_POINTED 2
 # define ARG_MODE_NORMAL 0
 # define ARG_IS_SELECTED(mode) (mode & ARG_MODE_SELECTED)
-# define ARG_IS_POINTED(mode) (mode & ARG_MODE_POINTED)
+# define ARG_IS_POINTED(mode) ((mode >> 1))
 
 typedef struct 		s_arg
 {
@@ -68,6 +68,9 @@ t_arglist			*arglist_new(int ac, char **av);
 void				arglist_del(t_arglist *this);
 void				arglist_render(t_arglist *this);
 int					arglist_get_current_index(t_arglist *list);
+
+void				arg_select(t_arglist *list);
+
 
 /*
 ** TERM.C
