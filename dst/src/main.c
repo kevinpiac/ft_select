@@ -29,7 +29,7 @@ int			main(int ac, char **av)
 	cmd_put("vs"); /* show cursor */
 	cmd_put("ks");/* allow keys */
 	arglist_render(arglist);
-	listener_keystroke();
+	listener_keystroke(arglist);
 //		signal(SIGWINCH, &print_size);
 //		cmd_put("vi");
 	arglist_del(arglist);

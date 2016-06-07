@@ -12,7 +12,7 @@
 
 #include "ft_select.h"
 
-void			listener_keystroke(void)
+void			listener_keystroke(t_arglist *list)
 {
 	int			ret;
 	char		buf[8];
@@ -21,12 +21,13 @@ void			listener_keystroke(void)
 	while ((ret = read(0, buf, 8)))
 	{
 		buf[ret] = '\0';
+		//apply_key(get_key_index);
 		if (IS_ARROW(buf[0], buf[1]))
 		{
-			IS_KEY_UP(buf[2]) ? ft_putendl("key up") : 0;
-			IS_KEY_RIGHT(buf[2]) ? ft_putendl("key right") : 0;
-			IS_KEY_DOWN(buf[2]) ? ft_putendl("key down") : 0;
-			IS_KEY_LEFT(buf[2]) ? ft_putendl("key left") : 0;
+			IS_KEY_UP(buf[2]) ? move_up(list) : 0;
+			IS_KEY_RIGHT(buf[2]) ? move_right(list) : 0;
+			IS_KEY_DOWN(buf[2]) ? move_down(list) : 0;
+			IS_KEY_LEFT(buf[2]) ? move_left(list) : 0;
 		}
 		else if (IS_SPACE(buf[0]))
 			ft_putendl("space");

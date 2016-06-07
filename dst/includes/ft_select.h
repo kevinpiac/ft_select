@@ -39,8 +39,8 @@
 # define ARG_MODE_SELECTED 1
 # define ARG_MODE_POINTED 2
 # define ARG_MODE_NORMAL 0
-# define ARG_IS_SELECTED(mode) (mode &= ARG_MODE_SELECTED)
-# define ARG_IS_POINTED(mode) (mode &= ARG_MODE_POINTED)
+# define ARG_IS_SELECTED(mode) (mode & ARG_MODE_SELECTED)
+# define ARG_IS_POINTED(mode) (mode & ARG_MODE_POINTED)
 
 typedef struct 		s_arg
 {
@@ -67,6 +67,7 @@ typedef struct		s_arglist
 t_arglist			*arglist_new(int ac, char **av);
 void				arglist_del(t_arglist *this);
 void				arglist_render(t_arglist *this);
+int					arglist_get_current_index(t_arglist *list);
 
 /*
 ** TERM.C
@@ -96,6 +97,15 @@ void				size_put(struct winsize);
 ** LISTENER.C
 */
 
-void				listener_keystroke(void);
+void				listener_keystroke(t_arglist *list);
+
+/*
+** MOVE.C
+*/
+
+void			move_right(t_arglist *list);
+void			move_left(t_arglist *list);
+void			move_up(t_arglist *list);
+void			move_down(t_arglist *list);
 
 #endif
