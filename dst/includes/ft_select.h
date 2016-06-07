@@ -20,6 +20,9 @@
 # include <sys/ioctl.h>
 # include <signal.h>
 
+# define COL_SIZE 10
+# define LINE_SIZE 2
+
 /*
 ** ARG.C
 */
@@ -69,7 +72,7 @@ int					term_out(int c);
 */
 
 void				cmd_put(char *termcap);
-void				cmd_goto(int x, int y);
+void				cmd_goto(int col, int line);
 
 /*
 ** SIZE.c

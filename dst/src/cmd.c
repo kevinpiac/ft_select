@@ -21,12 +21,12 @@ void			cmd_put(char *termcap)
 }
 
 
-void	cmd_goto(int x, int y)
+void	cmd_goto(int col, int line)
 {
 	char	*ptr;
 	char	*ptr2;
 
 	if ((ptr = tgetstr("cm", NULL)) != NULL)
-		if ((ptr2 = tgoto(ptr, x, y)) != NULL)
+		if ((ptr2 = tgoto(ptr, col, line)) != NULL)
 			ft_putstr_fd(ptr2, isatty(STDOUT_FILENO));
 }

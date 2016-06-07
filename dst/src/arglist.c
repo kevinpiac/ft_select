@@ -30,6 +30,7 @@ static void			arglist_init__(t_arglist *this, int ac, char **av)
 		biggest = arg->len > biggest ? arg->len : biggest;
 		i++;
 	}
+	this->biggest = biggest;
 }
 
 t_arglist			*arglist_new(int ac, char **av)
@@ -52,20 +53,26 @@ void				arglist_del(t_arglist *this)
 void				arglist_render(t_arglist *this)
 {
 	int			i;
-	int			x;
-	int			y;
+	int			col;
+	int			line;
+	int			nbr_col;
 	t_vector	*args;
 
 	i = 0;
-	x = 0;
-	y = 0;
+	col = 0;
+	line = 0;
 	args = this->args;
-	size_put(size_get());
-	ft_putnbr(size_get_y());
-	ft_putnbr(size_get_x());
+	nbr_col = size_get_y() / (this->biggest + COL_SIZE);
 	while (i < args->total)
 	{
-		//should add conditions and use cmd_goto to change the cols display
+		if (col < nbr_col)
+			cmd_goto(col++ * (this->biggest + COL_SIZE), line);
+		else
+		{
+			col = 0;
+			line += LINE_SIZE;
+			cmd_goto(col++ * (this->biggest + COL_SIZE), line);
+		}
 		arg_print(args->items[i]);
 		i++;
 	}
