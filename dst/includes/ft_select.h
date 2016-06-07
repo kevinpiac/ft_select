@@ -25,16 +25,12 @@
 # define LINE_SIZE 2
 
 /* keystrokes listener */
-# define CLF 0x0A
-# define SUP 0x7E335B1B
-# define DEL 0x7F
-# define LEF 0x445B1B
-# define RIG 0x435B1B
-# define UPP 0x415B1B
-# define DOW 0x425B1B
-# define SPA ' '
-# define ESC 0x1B
-# define NUL 0x00
+# define IS_ARROW(first, second) (first == 27 && second == 79)
+# define IS_KEY_LEFT(k) (k == 68)
+# define IS_KEY_UP(k) (k == 65)
+# define IS_KEY_RIGHT(k) (k == 67)
+# define IS_KEY_DOWN(k) (k == 66)
+# define IS_SPACE(k) (k == 32)
 
 /*
 ** ARG.C
