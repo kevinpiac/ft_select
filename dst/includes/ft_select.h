@@ -20,8 +20,21 @@
 # include <sys/ioctl.h>
 # include <signal.h>
 
+/* rendering style */
 # define COL_SIZE 10
 # define LINE_SIZE 2
+
+/* keystrokes listener */
+# define CLF 0x0A
+# define SUP 0x7E335B1B
+# define DEL 0x7F
+# define LEF 0x445B1B
+# define RIG 0x435B1B
+# define UPP 0x415B1B
+# define DOW 0x425B1B
+# define SPA ' '
+# define ESC 0x1B
+# define NUL 0x00
 
 /*
 ** ARG.C
@@ -75,12 +88,18 @@ void				cmd_put(char *termcap);
 void				cmd_goto(int col, int line);
 
 /*
-** SIZE.c
+** SIZE.C
 */
 
 struct winsize		size_get(void);
 int					size_get_x(void);
 int					size_get_y(void);
 void				size_put(struct winsize);
+
+/*
+** LISTENER.C
+*/
+
+void				listener_keystroke(void);
 
 #endif

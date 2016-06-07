@@ -25,16 +25,12 @@ int			main(int ac, char **av)
 	if (term_init_config(termios) == -1)
 		return (1);
 	arglist = arglist_new(ac, av);
-	cmd_put("cl");
-	cmd_put("vs"); // show cursor
+	cmd_put("cl"); /* clear terminal */
+//	cmd_put("vs"); /* show cursor */
 	arglist_render(arglist);
-	char *ptr = tgetstr("cm", NULL);
-	tgoto(ptr, 100, 100);
-	while (read(0, NULL, 1))
-	{
+	listener_keystroke();
 //		signal(SIGWINCH, &print_size);
-		cmd_put("vi");
-	}
+//		cmd_put("vi");
 	arglist_del(arglist);
 	free(termios);
 	return (0);
