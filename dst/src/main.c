@@ -12,18 +12,6 @@
 
 #include "ft_select.h"
 
-static void			print_size(int i)
-{
-	struct winsize w;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	i = 0;
-	use_termcap("cl");
-	ft_putstr("col->");ft_putnbr(w.ws_col);
-	ft_putendl("");
-	ft_putstr("line->");ft_putnbr(w.ws_row);
-	ft_putendl("");
-}
-
 int			main(int ac, char **av)
 {
 	struct termios	*termios;
@@ -37,11 +25,15 @@ int			main(int ac, char **av)
 	if (term_init_config(termios) == -1)
 		return (1);
 	arglist = arglist_new(ac, av);
+	cmd_put("cl");
+	cmd_put("vs"); // show cursor
 	arglist_render(arglist);
-	use_termcap("vs"); // show cursor
+	char *ptr = tgetstr("cm", NULL);
+	tgoto(ptr, 100, 100);
 	while (read(0, NULL, 1))
 	{
-		signal(SIGWINCH, &print_size);
+//		signal(SIGWINCH, &print_size);
+		cmd_put("vi");
 	}
 	arglist_del(arglist);
 	free(termios);

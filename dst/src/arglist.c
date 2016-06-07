@@ -52,17 +52,21 @@ void				arglist_del(t_arglist *this)
 void				arglist_render(t_arglist *this)
 {
 	int			i;
+	int			x;
+	int			y;
 	t_vector	*args;
 
 	i = 0;
+	x = 0;
+	y = 0;
 	args = this->args;
+	size_put(size_get());
+	ft_putnbr(size_get_y());
+	ft_putnbr(size_get_x());
 	while (i < args->total)
 	{
+		//should add conditions and use cmd_goto to change the cols display
 		arg_print(args->items[i]);
-		if (i < args->total - 1)
-			ft_putstr("		");
-		else
-			ft_putchar('\n');
 		i++;
 	}
 }

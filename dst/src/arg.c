@@ -47,10 +47,10 @@ void				arg_print(void *that)
 
 	this = (t_arg *)that;
 	if (ARG_IS_POINTED(this->mode))
-		use_termcap("us");
+		cmd_put("us");
 	if (ARG_IS_SELECTED(this->mode))
-		use_termcap("mr");
+		cmd_put("mr");
 	ft_putstr(this->name);
-	use_termcap("me");
-//	use_termcap("ue"); not needed if term supports mr...mb
+	cmd_put("me");
+//	cmd_put("ue"); not needed if term supports mr...mb
 }

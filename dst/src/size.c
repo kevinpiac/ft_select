@@ -12,21 +12,34 @@
 
 #include "ft_select.h"
 
-void			cmd_put(char *termcap)
+void				size_put(struct winsize w)
 {
-	char			*res;
-
-	if ((res = tgetstr(termcap, NULL)))
-		tputs(res, 0, &term_out);
+	ft_putstr("col->");ft_putnbr(w.ws_col);
+	ft_putendl("");
+	ft_putstr("line->");ft_putnbr(w.ws_row);
+	ft_putendl("");
 }
 
-
-void	cmd_goto(int x, int y)
+struct winsize		size_get(void)
 {
-	char	*ptr;
-	char	*ptr2;
+	struct winsize		w;
 
-	if ((ptr = tgetstr("cm", NULL)) != NULL)
-		if ((ptr2 = tgoto(ptr, x, y)) != NULL)
-			ft_putstr_fd(ptr2, isatty(STDOUT_FILENO));
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	return (w);
+}
+
+int					size_get_x(void)
+{
+	struct winsize		w;
+
+	w = size_get();
+	return (w.ws_row);
+}
+
+int					size_get_y(void)
+{
+	struct winsize		w;
+
+	w = size_get();
+	return (w.ws_col);
 }

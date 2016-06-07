@@ -68,6 +68,16 @@ int					term_out(int c);
 ** CMD.C
 */
 
-void				use_termcap(char *termcap);
+void				cmd_put(char *termcap);
+void				cmd_goto(int x, int y);
+
+/*
+** SIZE.c
+*/
+
+struct winsize		size_get(void);
+int					size_get_x(void);
+int					size_get_y(void);
+void				size_put(struct winsize);
 
 #endif
