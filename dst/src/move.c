@@ -50,12 +50,40 @@ void			move_left(t_arglist *list)
 
 void			move_up(t_arglist *list)
 {
-	list = NULL;
-	ft_putendl("move up");
+	int 		nbr_col;
+	int			i;
+	int			total;
+	t_arg		*arg;
+	t_vector	*args;
+
+	nbr_col = size_get_y() / (list->biggest + COL_SIZE);
+	cmd_put("cl");
+	args = list->args;
+	total = args->total;
+	i = arglist_get_current_index(list);
+	arg = args->items[i];
+	arg->mode &= ARG_MODE_SELECTED;
+	arg = (i - nbr_col >= 0) ? args->items[i - nbr_col] : args->items[total - 1];
+	arg->mode |= ARG_MODE_POINTED;
+	arglist_render(list);
 }
 
 void			move_down(t_arglist *list)
 {
-	list = NULL;
-	ft_putendl("move down");
+	int 		nbr_col;
+	int			i;
+	int			total;
+	t_arg		*arg;
+	t_vector	*args;
+
+	nbr_col = size_get_y() / (list->biggest + COL_SIZE);
+	cmd_put("cl");
+	args = list->args;
+	total = args->total;
+	i = arglist_get_current_index(list);
+	arg = args->items[i];
+	arg->mode &= ARG_MODE_SELECTED;
+	arg = (i + nbr_col < total) ? args->items[i + nbr_col] : args->items[0];
+	arg->mode |= ARG_MODE_POINTED;
+	arglist_render(list);
 }
