@@ -31,6 +31,8 @@
 # define IS_KEY_RIGHT(k) (k == 67)
 # define IS_KEY_DOWN(k) (k == 66)
 # define IS_SPACE(k) (k == 32)
+# define IS_ENTER(k) (k == 10)
+# define IS_ESC(k) (k == 27)
 
 /*
 ** ARG.C

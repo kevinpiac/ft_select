@@ -31,5 +31,9 @@ void			listener_keystroke(t_arglist *list)
 		}
 		else if (IS_SPACE(buf[0]))
 			arg_select(list);
+		else if (IS_ENTER(buf[0]))
+			ft_putstr("Enter");
+		else if (IS_ESC(buf[0]))
+			ft_putstr("Escape");
 	}
 }

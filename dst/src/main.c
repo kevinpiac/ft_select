@@ -26,7 +26,8 @@ int			main(int ac, char **av)
 		return (1);
 	arglist = arglist_new(ac, av);
 	cmd_put("cl"); /* clear terminal */
-	cmd_put("vs"); /* show cursor */
+//	cmd_put("vs"); /* show cursor */
+	cmd_put("vi"); /* hide cursos */
 	cmd_put("ks");/* allow keys */
 	arglist_render(arglist);
 	listener_keystroke(arglist);
