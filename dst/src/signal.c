@@ -1,7 +1,7 @@
 /* ************************************************************************** */
-/*                                        qqwq                                    */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,15 @@
 
 #include "ft_select.h"
 
-t_arglist	*g_arglist;
+extern t_arglist	*g_arglist;
 
-int			main(int ac, char **av)
+static void		signal_action(int sig)
 {
-	struct termios	*termios;
-	t_arglist		*arglist;
+	if (sig == SIGWINCH)
+		arglist_render(g_arglist);
+}
 
-	if (ac < 2)
-		return (1);
-	if (term_init_data() == -1)
-		return (1);
-	termios = (struct termios *)ft_memalloc(sizeof(struct termios));
-	if (term_init_config(termios) == -1)
-		return (1);
-	arglist = arglist_new(ac, av);
-	g_arglist = arglist;
-	cmd_put("cl"); /* clear terminal */
-	cmd_put("vi"); /* hide cursos */
-	cmd_put("ks");/* allow keys */
-	arglist_render(arglist);
-	signal_handler();
-	listener_keystroke(arglist);
-	arglist_del(arglist);
-	free(termios);
-	return (0);
+void			signal_handler(void)
+{
+	signal(SIGWINCH, &signal_action);
 }

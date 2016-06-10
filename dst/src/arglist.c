@@ -62,7 +62,8 @@ void				arglist_render(t_arglist *this)
 	col = 0;
 	line = 0;
 	args = this->args;
-	nbr_col = size_get_y() / (this->biggest + COL_SIZE);
+	nbr_col = size_get_col() / (this->biggest + COL_SIZE);
+	cmd_put("cl"); /* clear terminal */
 	while (i < args->total)
 	{
 		if (col < nbr_col)

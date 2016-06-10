@@ -56,7 +56,7 @@ void			move_up(t_arglist *list)
 	t_arg		*arg;
 	t_vector	*args;
 
-	nbr_col = size_get_y() / (list->biggest + COL_SIZE);
+	nbr_col = size_get_col() / (list->biggest + COL_SIZE);
 	cmd_put("cl");
 	args = list->args;
 	total = args->total;
@@ -76,7 +76,7 @@ void			move_down(t_arglist *list)
 	t_arg		*arg;
 	t_vector	*args;
 
-	nbr_col = size_get_y() / (list->biggest + COL_SIZE);
+	nbr_col = size_get_col() / (list->biggest + COL_SIZE);
 	cmd_put("cl");
 	args = list->args;
 	total = args->total;

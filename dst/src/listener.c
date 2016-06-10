@@ -21,7 +21,6 @@ void			listener_keystroke(t_arglist *list)
 	while ((ret = read(0, buf, 8)))
 	{
 		buf[ret] = '\0';
-		//apply_key(get_key_index);
 		if (IS_ARROW(buf[0], buf[1]))
 		{
 			IS_KEY_UP(buf[2]) ? move_up(list) : 0;

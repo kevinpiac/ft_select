@@ -87,15 +87,15 @@ int					term_out(int c);
 */
 
 void				cmd_put(char *termcap);
-void				cmd_goto(int col, int line);
+void				cmd_goto(int col, int row);
 
 /*
 ** SIZE.C
 */
 
 struct winsize		size_get(void);
-int					size_get_x(void);
-int					size_get_y(void);
+int					size_get_col(void);
+int					size_get_row(void);
 void				size_put(struct winsize);
 
 /*
@@ -112,5 +112,11 @@ void			move_right(t_arglist *list);
 void			move_left(t_arglist *list);
 void			move_up(t_arglist *list);
 void			move_down(t_arglist *list);
+
+/*
+** SIGNAL
+*/
+
+void 			signal_handler(void);
 
 #endif

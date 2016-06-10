@@ -28,7 +28,7 @@ struct winsize		size_get(void)
 	return (w);
 }
 
-int					size_get_x(void)
+int					size_get_row(void)
 {
 	struct winsize		w;
 
@@ -36,7 +36,7 @@ int					size_get_x(void)
 	return (w.ws_row);
 }
 
-int					size_get_y(void)
+int					size_get_col(void)
 {
 	struct winsize		w;
 
