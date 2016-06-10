@@ -97,6 +97,7 @@ struct winsize		size_get(void);
 int					size_get_col(void);
 int					size_get_row(void);
 void				size_put(struct winsize);
+int					size_calculate(t_arglist *list);
 
 /*
 ** LISTENER.C

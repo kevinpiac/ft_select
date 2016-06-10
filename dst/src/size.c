@@ -43,3 +43,12 @@ int					size_get_col(void)
 	w = size_get();
 	return (w.ws_col);
 }
+
+int					size_calculate(t_arglist *list)
+{
+	int					nbr_col;
+
+	nbr_col = size_get_col() / (list->biggest + COL_SIZE);
+	nbr_col = nbr_col > list->args->total ? list->args->total : nbr_col;
+	return (nbr_col);
+}
