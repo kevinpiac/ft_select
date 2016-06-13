@@ -62,12 +62,14 @@ int						term_out(int c)
 	return (1);
 }
 
-void					term_restore(t_arglist *list, struct termios *old_conf)
+void					term_restore(t_arglist *l, struct termios *t, t_bool p)
 {
-	tcsetattr(0, TCSANOW, old_conf);
+	tcsetattr(0, TCSANOW, t);
 	cmd_put("ve");
 	cmd_put("cl");
-	arglist_del(list);
-	free(old_conf);
+	if (p == true)
+		arglist_return(l);
+	arglist_del(l);
+	free(t);
 	exit(-1);
 }

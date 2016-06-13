@@ -31,8 +31,8 @@ void			listener_keystroke(t_arglist *list, struct termios *old_config)
 		else if (IS_SPACE(buf[0]))
 			arg_select(list);
 		else if (IS_ENTER(buf[0]))
-			ft_putstr("Enter");
+			term_restore(list, old_config, true);
 		else if (IS_ESC(buf[0]))
-			term_restore(list, old_config);
+			term_restore(list, old_config, false);
 	}
 }

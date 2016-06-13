@@ -96,3 +96,24 @@ int					arglist_get_current_index(t_arglist *list)
 	}
 	return (-1);
 }
+
+void				arglist_return(t_arglist *list)
+{
+	int			i;
+	int			total;
+	t_arg		*arg;
+
+	total = list->args->total;
+	i = 0;
+	while (i < total)
+	{
+		arg = list->args->items[i];
+		if (ARG_IS_SELECTED(arg->mode))
+		{
+			ft_putstr(arg->name);
+			if (i < total - 1)
+				ft_putchar(' ');
+		}
+		i++;
+	}
+}

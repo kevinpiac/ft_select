@@ -69,10 +69,10 @@ typedef struct		s_arglist
 t_arglist			*arglist_new(int ac, char **av);
 void				arglist_del(t_arglist *this);
 void				arglist_render(t_arglist *this);
+void				arglist_return(t_arglist *this);
 int					arglist_get_current_index(t_arglist *list);
 
 void				arg_select(t_arglist *list);
-
 
 /*
 ** TERM.C
@@ -81,7 +81,7 @@ void				arg_select(t_arglist *list);
 int					term_init_data(void);
 struct termios 		*term_init_config(void);
 int					term_out(int c);
-void				term_restore(t_arglist *arglist, struct termios *termios);
+void				term_restore(t_arglist *lst, struct termios *t, t_bool b);
 
 /*
 ** CMD.C
