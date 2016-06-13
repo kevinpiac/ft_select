@@ -12,7 +12,7 @@
 
 #include "ft_select.h"
 
-void			listener_keystroke(t_arglist *list)
+void			listener_keystroke(t_arglist *list, struct termios *old_config)
 {
 	int			ret;
 	char		buf[8];
@@ -33,6 +33,6 @@ void			listener_keystroke(t_arglist *list)
 		else if (IS_ENTER(buf[0]))
 			ft_putstr("Enter");
 		else if (IS_ESC(buf[0]))
-			ft_putstr("Escape");
+			term_restore(old_config);
 	}
 }

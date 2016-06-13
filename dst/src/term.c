@@ -34,18 +34,19 @@ int			term_init_data(void)
 	return (-1);
 }
 
-int			term_init_config(struct termios *termios)
+int			term_init_config(struct termios *old_config)
 {
-	if (tcgetattr(0, termios) == -1)
+	struct termios new;
+	if (tcgetattr(0, old_config) == -1)
 	{
 		error_print(-1, NULL, "Struct termios can not be initialized.");
 		return (-1);
 	}
-	//termios->c_lflag &= ~(ICANON);
-	termios->c_lflag &= ~(ICANON | ECHO);
-	termios->c_cc[VMIN] = 1;
-	termios->c_cc[VTIME] = 1;
-	tcsetattr(0, 0, termios);
+	new = *old_config;
+	new.c_lflag &= ~(ICANON | ECHO);
+	new.c_cc[VMIN] = 1;
+	new.c_cc[VTIME] = 1;
+	tcsetattr(0, TCSANOW, &new);
 	return (1);
 }
 
@@ -53,4 +54,12 @@ int			term_out(int c)
 {
 	write(1, &c, 1);
 	return (1);
+}
+
+void		term_restore(struct termios *termios)
+{
+	tcsetattr(0, TCSANOW, termios);
+	cmd_put("ve");
+	cmd_put("cl");
+	exit(-1);
 }

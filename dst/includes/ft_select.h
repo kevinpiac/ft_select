@@ -81,6 +81,7 @@ void				arg_select(t_arglist *list);
 int					term_init_data(void);
 int					term_init_config(struct termios *termios);
 int					term_out(int c);
+void				term_restore(struct termios *termios);
 
 /*
 ** CMD.C
@@ -103,7 +104,7 @@ int					size_calculate(t_arglist *list);
 ** LISTENER.C
 */
 
-void				listener_keystroke(t_arglist *list);
+void				listener_keystroke(t_arglist *list, struct termios *old_c);
 
 /*
 ** MOVE.C

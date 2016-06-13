@@ -23,14 +23,18 @@ static void		signal_action(int sig)
 	nbr_col = nbr_col ? nbr_col : new_nbr_col;
 	if (sig == SIGWINCH && new_nbr_col != nbr_col)
 	{
-		ft_putstr("new");ft_putnbr(new_nbr_col);
-		ft_putstr("\nold:"); ft_putnbr(nbr_col);
 		arglist_render(g_arglist);
 		nbr_col = new_nbr_col;
+	}
+	else if (sig == SIGINT)
+	{
+		cmd_goto(0, 10); //add a windows for notifications...
+		ft_putendl("Press escape to quit the program");
 	}
 }
 
 void			signal_handler(void)
 {
 	signal(SIGWINCH, &signal_action);
+	signal(SIGINT, &signal_action);
 }
