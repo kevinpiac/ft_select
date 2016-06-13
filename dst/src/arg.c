@@ -64,5 +64,6 @@ void				arg_select(t_arglist *list)
 	i = arglist_get_current_index(list);
 	arg = list->args->items[i];
 	arg->mode ^= ARG_MODE_SELECTED;
+	move_right(list);
 	arglist_render(list);
 }
