@@ -20,7 +20,6 @@ void			cmd_put(char *termcap)
 		tputs(res, 0, &term_out);
 }
 
-
 void	cmd_goto(int col, int line)
 {
 	char	*ptr;

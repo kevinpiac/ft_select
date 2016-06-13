@@ -12,7 +12,7 @@
 
 #include "ft_select.h"
 
-int			term_init_data(void)
+int					term_init_data(void)
 {
 	char			*termtype;
 	int				success;
@@ -34,32 +34,40 @@ int			term_init_data(void)
 	return (-1);
 }
 
-int			term_init_config(struct termios *old_config)
+struct termios		*term_init_config(void)
 {
 	struct termios new;
+	struct termios *old_config;
+
+	old_config = (struct termios *)ft_memalloc(sizeof(struct termios));
 	if (tcgetattr(0, old_config) == -1)
 	{
 		error_print(-1, NULL, "Struct termios can not be initialized.");
-		return (-1);
+		return (NULL);
 	}
 	new = *old_config;
 	new.c_lflag &= ~(ICANON | ECHO);
 	new.c_cc[VMIN] = 1;
 	new.c_cc[VTIME] = 1;
 	tcsetattr(0, TCSANOW, &new);
-	return (1);
+	cmd_put("cl"); /* clear terminal */
+	cmd_put("vi"); /* hide cursos */
+	cmd_put("ks");/* allow keys */
+	return (old_config);
 }
 
-int			term_out(int c)
+int						term_out(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-void		term_restore(struct termios *termios)
+void					term_restore(t_arglist *list, struct termios *old_conf)
 {
-	tcsetattr(0, TCSANOW, termios);
+	tcsetattr(0, TCSANOW, old_conf);
 	cmd_put("ve");
 	cmd_put("cl");
+	arglist_del(list);
+	free(old_conf);
 	exit(-1);
 }
