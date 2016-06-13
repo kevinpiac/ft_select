@@ -50,7 +50,7 @@ void				arg_print(void *that)
 		cmd_put("us");
 	if (ARG_IS_SELECTED(this->mode))
 		cmd_put("mr");
-	ft_putstr(this->name);
+	ft_putstr_fd(this->name, isatty(STDOUT_FILENO));
 	cmd_put("me");
 //	cmd_put("ue"); not needed if term supports mr...mb
 }

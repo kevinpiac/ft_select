@@ -17,7 +17,8 @@ void			cmd_put(char *termcap)
 	char			*res;
 
 	if ((res = tgetstr(termcap, NULL)))
-		tputs(res, 0, &term_out);
+		ft_putstr_fd(res, isatty(STDOUT_FILENO));
+		//tputs(res, 0, &term_out);
 }
 
 void	cmd_goto(int col, int line)

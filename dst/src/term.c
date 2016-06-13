@@ -40,7 +40,7 @@ struct termios		*term_init_config(void)
 	struct termios *old_config;
 
 	old_config = (struct termios *)ft_memalloc(sizeof(struct termios));
-	if (tcgetattr(0, old_config) == -1)
+	if (tcgetattr(STDIN_FILENO, old_config) == -1)
 	{
 		error_print(-1, NULL, "Struct termios can not be initialized.");
 		return (NULL);
@@ -49,7 +49,7 @@ struct termios		*term_init_config(void)
 	new.c_lflag &= ~(ICANON | ECHO);
 	new.c_cc[VMIN] = 1;
 	new.c_cc[VTIME] = 1;
-	tcsetattr(0, TCSANOW, &new);
+	tcsetattr(STDIN_FILENO, TCSANOW, &new);
 	cmd_put("cl"); /* clear terminal */
 	cmd_put("vi"); /* hide cursos */
 	cmd_put("ks");/* allow keys */
