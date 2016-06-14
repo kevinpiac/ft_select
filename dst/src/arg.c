@@ -67,3 +67,15 @@ void				arg_select(t_arglist *list)
 	move_right(list);
 	arglist_render(list);
 }
+
+void				arg_del_current(t_arglist *list, struct termios *old_conf)
+{
+	int			index;
+
+	if (list->args->total <= 1)
+		term_restore(list, old_conf, false);
+	index = arglist_get_current_index(list);
+	move_left(list);
+	vector_delone(list->args, index);
+	arglist_render(list);
+}

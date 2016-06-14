@@ -33,6 +33,7 @@
 # define IS_SPACE(k) (k == 32)
 # define IS_ENTER(k) (k == 10)
 # define IS_ESC(k) (k == 27)
+# define IS_DEL(k) (k == 127)
 
 /*
 ** ARG.C
@@ -55,6 +56,7 @@ t_arg				*arg_new(char *name, int mode);
 void				arg_del(void *this);
 void				arg_print(void *this);
 
+
 /*
 ** ARGLIST.C
 */
@@ -63,7 +65,6 @@ typedef struct		s_arglist
 {
 	t_vector		*args;
 	size_t			biggest;
-	// add every usefull function pointer bellow...
 }					t_arglist;
 
 t_arglist			*arglist_new(int ac, char **av);
@@ -73,6 +74,7 @@ void				arglist_return(t_arglist *this);
 int					arglist_get_current_index(t_arglist *list);
 
 void				arg_select(t_arglist *list);
+void				arg_del_current(t_arglist *list, struct termios *old_conf);
 
 /*
 ** TERM.C
