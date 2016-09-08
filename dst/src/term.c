@@ -50,7 +50,7 @@ struct termios		*term_init_config(void)
 	new.c_cc[VMIN] = 1;
 	new.c_cc[VTIME] = 1;
 	tcsetattr(STDIN_FILENO, TCSANOW, &new);
-	cmd_put("cl"); /* clear terminal */
+	cmd_put("ti");
 	cmd_put("vi"); /* hide cursos */
 	cmd_put("ks");/* allow keys */
 	return (old_config);
@@ -66,7 +66,7 @@ void					term_restore(t_arglist *l, struct termios *t, t_bool p)
 {
 	tcsetattr(0, TCSANOW, t);
 	cmd_put("ve");
-	cmd_put("cl");
+	cmd_put("te");
 	if (p == true)
 		arglist_return(l);
 	arglist_del(l);

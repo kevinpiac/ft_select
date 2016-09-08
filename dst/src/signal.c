@@ -31,10 +31,15 @@ static void		signal_action(int sig)
 		cmd_goto(0, 10); //add a windows for notifications...
 		ft_putendl("Press escape to quit the program");
 	}
+	else if (sig == SIGTSTP)
+	{
+		ft_putendl("Sig Stop Cacthed !");
+	}
 }
 
 void			signal_handler(void)
 {
 	signal(SIGWINCH, &signal_action);
 	signal(SIGINT, &signal_action);
+	signal(SIGTSTP, &signal_action);
 }
