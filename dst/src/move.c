@@ -19,7 +19,6 @@ void			move_right(t_arglist *list)
 	t_arg		*arg;
 	t_vector	*args;
 
-	cmd_put("cl");
 	args = list->args;
 	total = args->total;
 	i = arglist_get_current_index(list);
@@ -37,7 +36,6 @@ void			move_left(t_arglist *list)
 	t_arg		*arg;
 	t_vector	*args;
 
-	cmd_put("cl");
 	args = list->args;
 	total = args->total;
 	i = arglist_get_current_index(list);
@@ -57,7 +55,6 @@ void			move_up(t_arglist *list)
 	t_vector	*args;
 
 	nbr_col = size_get_col() / (list->biggest + COL_SIZE);
-	cmd_put("cl");
 	args = list->args;
 	total = args->total;
 	i = arglist_get_current_index(list);
@@ -77,7 +74,6 @@ void			move_down(t_arglist *list)
 	t_vector	*args;
 
 	nbr_col = size_get_col() / (list->biggest + COL_SIZE);
-	cmd_put("cl");
 	args = list->args;
 	total = args->total;
 	i = arglist_get_current_index(list);
