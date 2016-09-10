@@ -28,12 +28,14 @@ static void		signal_action(int sig)
 	}
 	else if (sig == SIGINT)
 	{
-		cmd_goto(0, 10); //add a windows for notifications...
+		cmd_goto(0, 10);
 		ft_putendl("Press escape to quit the program");
 	}
-	else if (sig == SIGTSTP)
+	else if (sig == SIGCONT)
 	{
-		ft_putendl("Sig Stop Cacthed !");
+		term_init_data();
+		term_init_config();
+		arglist_render(g_arglist);
 	}
 }
 
@@ -41,5 +43,5 @@ void			signal_handler(void)
 {
 	signal(SIGWINCH, &signal_action);
 	signal(SIGINT, &signal_action);
-	signal(SIGTSTP, &signal_action);
+	signal(SIGCONT, &signal_action);
 }

@@ -52,7 +52,6 @@ void				arg_print(void *that)
 		cmd_put("mr");
 	ft_putstr_fd(this->name, isatty(STDOUT_FILENO));
 	cmd_put("me");
-//	cmd_put("ue"); not needed if term supports mr...mb
 }
 
 void				arg_select(t_arglist *list)

@@ -14,9 +14,11 @@
 
 void				size_put(struct winsize w)
 {
-	ft_putstr("col->");ft_putnbr(w.ws_col);
+	ft_putstr("col->");
+	ft_putnbr(w.ws_col);
 	ft_putendl("");
-	ft_putstr("line->");ft_putnbr(w.ws_row);
+	ft_putstr("line->");
+	ft_putnbr(w.ws_row);
 	ft_putendl("");
 }
 
