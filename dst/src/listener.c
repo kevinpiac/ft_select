@@ -36,5 +36,6 @@ void			listener_keystroke(t_arglist *list, struct termios *old_config)
 			term_restore(list, old_config, false);
 		else if (IS_DEL(buf[0]))
 			arg_del_current(list, old_config);
+		ft_bzero(buf, 8);
 	}
 }

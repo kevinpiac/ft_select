@@ -12,9 +12,26 @@
 
 #include "ft_select.h"
 
-extern t_arglist	*g_arglist;
+extern t_arglist		*g_arglist;
+extern struct termios 	*g_old_config;
 
-static void		signal_action(int sig)
+static void			term_tstp(struct termios *old_config)
+{
+	char	cp[3];
+
+	cmd_put("cl");
+	cmd_goto(0, 0);
+	cmd_put("ve");
+	cmd_put("te");
+	tcsetattr(STDIN_FILENO, TCSANOW, old_config);
+	signal(SIGTSTP, SIG_DFL);
+	cp[0] = (old_config)->c_cc[VSUSP];
+	cp[1] = '\n';
+	cp[2] = '\0';
+	ioctl(isatty(STDOUT_FILENO), TIOCSTI, &cp);
+}
+
+static void			signal_action(int sig)
 {
 	static int			nbr_col;
 	int					new_nbr_col;
@@ -31,6 +48,10 @@ static void		signal_action(int sig)
 		cmd_goto(0, 10);
 		ft_putendl("Press escape to quit the program");
 	}
+	else if (sig == SIGTSTP)
+	{
+		term_tstp(g_old_config);
+	}
 	else if (sig == SIGCONT)
 	{
 		term_init_data();
@@ -44,4 +65,5 @@ void			signal_handler(void)
 	signal(SIGWINCH, &signal_action);
 	signal(SIGINT, &signal_action);
 	signal(SIGCONT, &signal_action);
+	signal(SIGTSTP, &signal_action);
 }
